@@ -1,0 +1,8 @@
+[metadata.heroku]
+  root-package = "github.com/projects/simple-todo-master"
+  go-version = "go1.9.3"
+  install = [ "." ]
+
+[prune]
+  go-tests = true
+  unused-packages = true
