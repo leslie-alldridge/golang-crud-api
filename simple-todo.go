@@ -37,11 +37,9 @@ func main() {
 
 	http.Handle("/", r)
 
-	if os.Getenv("GO_ENV") == "PRODUCTION" {
-		port = ":" + os.Getenv("PORT")
-	} else {
-		port = ":8081"
-	}
+	
+	port = ":" + os.Getenv("PORT")
+	
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		fmt.Println("ListenAndServeError:", err)
