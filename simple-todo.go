@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/bmizerany/pat"
@@ -37,15 +37,19 @@ func main() {
 
 	http.Handle("/", r)
 
-	log.Print("http://localhost:8000")
-	err := http.ListenAndServe("localhost:8000", nil)
+	if os.Getenv("GO_ENV") == "PRODUCTION" {
+		port = ":" + os.Getenv("PORT")
+	} else {
+		port = ":8081"
+	}
+	err := http.ListenAndServe(port, nil)
 	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
+		fmt.Println("ListenAndServeError:", err)
 	}
 }
 
-func rootRoute(w http.ResponseWriter, r *http.Request){
-	http.Redirect(w,r,"/todos",http.StatusFound)
+func rootRoute(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "/todos", http.StatusFound)
 }
 
 func getAll(w http.ResponseWriter, r *http.Request) {
