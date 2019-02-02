@@ -37,7 +37,8 @@ func main() {
 
 	http.Handle("/", r)
 
-	
+	var port string
+
 	port = ":" + os.Getenv("PORT")
 	
 	err := http.ListenAndServe(port, nil)
