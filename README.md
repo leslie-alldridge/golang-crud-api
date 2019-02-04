@@ -13,3 +13,6 @@
 
 * DELETE BY ID,
 		DELETE todos/12
+
+
+Todo - fix run command for deploy on Heroku
